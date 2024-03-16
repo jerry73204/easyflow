@@ -1,0 +1,19 @@
+{
+    "version": "0.1.0",
+    "processors": [
+        "publisher",
+        "consumer",
+    ],
+    "exchanges": {
+        "channel": {
+            "type": "file",
+            "dir": "out",
+        },
+    },
+    "connections": {
+        "channel": {
+            "<": ["publisher"],
+            ">": ["consumer"],
+        },
+    },
+}

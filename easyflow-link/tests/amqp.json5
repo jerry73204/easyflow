@@ -1,0 +1,6 @@
+{
+    "address": "amqp://127.0.0.1:5672/%2f",
+    "exchange": "TEST_EXCHANGE",
+    "max_length": 1,
+    "reliable": true
+}

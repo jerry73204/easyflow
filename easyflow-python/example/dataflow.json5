@@ -1,0 +1,78 @@
+{
+    "version": "0.1.0",
+    "processors": [
+        // data preprocess
+        "video-capture",
+        "lidar-scan",
+        "message-matcher",
+
+        // pcd pipeline
+        "pcd-process",
+        "pcd-cluster",
+        "pcd-tracking",
+        "pcd-detect",
+
+        // output
+        "data-writer",
+        // "image-groundtruth"
+    ],
+    "exchanges": {
+        // data preprocessing
+        "exchange-video-capture": {
+            "type": "zenoh",
+            "key": "VIDEO_CAPTURE",
+        },
+        "exchange-lidar-scan": {
+            "type": "zenoh",
+            "key": "LIDAR_SCAN",
+        },
+        "exchange-message-matcher-feedback": {
+            "type": "zenoh",
+            "key": "MESSAGE_MATCHER_FEEDBACK",
+        },
+        "exchange-message-matcher": {
+            "type": "zenoh",
+            "key": "MESSAGE_MATCHER",
+        },
+        "exchange-pcd-process": {
+            "type": "zenoh",
+            "key": "PCD_PROCESS",
+        },
+        "exchange-pcd-cluster": {
+            "type": "zenoh",
+            "key": "PCD_CLUSTER",
+        },
+        "exchange-pcd-detect": {
+            "type": "zenoh",
+            "key": "WAYSIDE_PCD_DETECT",
+        },
+        "exchange-pcd-tracking": {
+            "type": "zenoh",
+            "key": "PCD_TRACKING",
+        },
+
+    },
+    "connections": {
+        // data preprocessing
+        "exchange-video-capture": {
+            "<": ["video-capture"],
+            ">": ["message-matcher"],
+        },
+        "exchange-lidar-scan": {
+            "<": ["lidar-scan"],
+            ">": ["message-matcher"],
+        },
+        "exchange-message-matcher-feedback": {
+            "<": ["message-matcher"],
+            ">": ["video-capture", "lidar-scan"],
+        },
+        "exchange-message-matcher": {
+            "<": ["message-matcher"],
+            ">": ["pcd-process"],
+        },
+        "exchange-pcd-process": {
+            "<": ["pcd-process"],
+            ">": ["data-writer"],
+        },
+    },
+}

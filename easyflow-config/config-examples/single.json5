@@ -1,0 +1,27 @@
+{
+    "version": "0.1.0",
+    "processors": [
+        "background-remove",
+    ],
+    "exchanges": {
+        "file-pcd-process": {
+            "type": "file",
+            "dir": "pcd-process_output",
+            "auto_clean": true,
+        },
+        "file-background-remove": {
+            "type": "file",
+            "dir": "background-remove_output",
+            "auto_clean": true,
+        },
+
+    },
+    "connections": {
+        "file-pcd-process": {
+            ">": ["background-remove"],
+        },
+        "file-background-remove": {
+            "<": ["background-remove"],
+        },
+    },
+}

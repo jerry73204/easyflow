@@ -1,0 +1,18 @@
+[package]
+name = "easyflow-config"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.69"
+serde = { version = "1.0.152", features = ["derive"] }
+indexmap = { version = "1.9.2", features = ["serde"] }
+easyflow-link = { version = "0.1.0", path = "../easyflow-link" }
+itertools = "0.10.5"
+serde-semver = "0.2.1"
+serde-loader = { version = "0.2.0", features = ["json5"] }
+
+[dev-dependencies]
+anyhow = { version = "1.0.69", features = ["backtrace"] }

@@ -1,0 +1,24 @@
+[package]
+name = "easyflow"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde-loader = { version = "0.1.4", features = ["json5"] }
+anyhow = "1.0.69"
+serde = { version = "1.0.152", features = ["derive"] }
+chrono = "0.4.23"
+indexmap = { version = "1.9.2", features = ["serde"] }
+easyflow-link = { version = "0.1.0", path = "../easyflow-link" }
+itertools = "0.10.5"
+ownref = "0.3.1"
+dot = "0.1.4"
+serde-semver = "0.2.1"
+derivative = "2.2.0"
+thiserror = "1.0.38"
+easyflow-config = { version = "0.1.0", path = "../easyflow-config" }
+
+[dev-dependencies]
+futures = { version = "0.3.26", features = ["executor"] }
+json5 = "0.4.1"
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }

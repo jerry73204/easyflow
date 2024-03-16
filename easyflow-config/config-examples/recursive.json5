@@ -1,0 +1,26 @@
+{
+    "version": "0.1.0",
+    "processors": [
+        "second",
+        "third",
+    ],
+    "exchanges": {
+        "amqp-second": {
+            "type": "amqp",
+            "address": "amqp://127.0.0.1:5672/%2f",
+            "exchange": "SECOND",
+            "max_length": 1,
+            "reliable": true
+        },
+    },
+    "connections": {
+        "amqp-second": {
+            "<": ["second"],
+            ">": ["third"],
+        },
+    },
+    "modules": {
+        "sub1": "recursive/sub1.json5",
+        "sub2": "recursive/sub2.json5",
+    },
+}

@@ -1,0 +1,22 @@
+{
+    "version": "0.1.0",
+    "processors": [
+        "third",
+        "fourth",
+    ],
+    "exchanges": {
+        "amqp-third": {
+            "type": "amqp",
+            "address": "amqp://127.0.0.1:5672/%2f",
+            "exchange": "THIRD",
+            "max_length": 1,
+            "reliable": true
+        },
+    },
+    "connections": {
+        "amqp-third": {
+            "<": ["third"],
+            ">": ["fourth"],
+        },
+    },
+}

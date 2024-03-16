@@ -1,0 +1,45 @@
+{
+    "version": "0.1.0",
+    "processors": [
+        "video-capture",
+        "lidar-scan",
+        "message-matcher"
+    ],
+    "exchanges": {
+        "amqp-video-capture": {
+            "type": "amqp",
+            "address": "amqp://127.0.0.1:5672/%2f",
+            "exchange": "VIDEO_CAPTURE",
+            "max_length": 1,
+            "reliable": true
+        },
+        "amqp-lidar-scan": {
+            "type": "amqp",
+            "address": "amqp://127.0.0.1:5672/%2f",
+            "exchange": "LIDAR_SCAN",
+            "max_length": 1,
+            "reliable": true
+        },
+        "amqp-feedback": {
+            "type": "amqp",
+            "address": "amqp://127.0.0.1:5672/%2f",
+            "exchange": "MESSAGE_MATCHER_FEEDBACK",
+            "max_length": 1,
+            "reliable": true
+        },
+    },
+    "connections": {
+        "amqp-video-capture": {
+            "<": ["video-capture"],
+            ">": ["message-matcher"],
+        },
+        "amqp-lidar-scan": {
+            "<": ["lidar-scan"],
+            ">": ["message-matcher"],
+        },
+        "amqp-feedback": {
+            "<": ["message-matcher"],
+            ">": ["video-capture", "lidar-scan"],
+        },
+    },
+}

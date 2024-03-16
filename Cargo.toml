@@ -1,0 +1,11 @@
+[workspace]
+resolver = "2"
+members = [
+    "easyflow-link",
+    "easyflow-rust",
+    "easyflow-python",
+    "easyflow-config",
+]
+
+[workspace.dependencies]
+tokio = "1.36.0"

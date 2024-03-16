@@ -1,0 +1,22 @@
+{
+    "version": "0.1.0",
+    "processors": [
+        "first",
+        "second",
+    ],
+    "exchanges": {
+        "amqp-first": {
+            "type": "amqp",
+            "address": "amqp://127.0.0.1:5672/%2f",
+            "exchange": "FIRST",
+            "max_length": 1,
+            "reliable": true
+        },
+    },
+    "connections": {
+        "amqp-first": {
+            "<": ["first"],
+            ">": ["second"],
+        },
+    },
+}
