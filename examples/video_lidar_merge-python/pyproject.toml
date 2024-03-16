@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "video_lidar_merge"
+version = "0.1.0"
+description = ""
+authors = ["aeon <jerry73204@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+easyflow = {path = "../../easyflow-python"}
+
+[tool.poetry.scripts]
+lidar_loader = "video_lidar_merge:lidar_loader_func"
+video_loader = "video_lidar_merge:video_loader_func"
+merger = "video_lidar_merge:merger_func"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
