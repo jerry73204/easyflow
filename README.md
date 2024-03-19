@@ -31,8 +31,8 @@ messages and publish them via a sender. The sender is created from the
 dataflow. The `video_loader` acts in similar way.
 
 ```python
-import easyflow
-flow = easyflow.load_dataflow("dataflow.json5")
+import pyeasyflow
+flow = pyeasyflow.load_dataflow("dataflow.json5")
 sender = flow.build_sender("lidar_loader")
 sender.send(b'bytes')
 ```
@@ -41,7 +41,10 @@ The `merger` process reads both lidar and video messages from both
 loaders.
 
 ```python
-def video_callback(payload):
+import pyeasyflow
+flow = pyeasyflow.load_dataflow("dataflow.json5")
+
+ def video_callback(payload):
     pass  # omit
 
 def lidar_callback(payload):
@@ -54,14 +57,14 @@ lidar_listener = flow.listen_from("merger", "LIDAR", lidar_callback)
 ## Rust Example
 
 The Rust example is in the
-[directory](examples/video_lidar_merge-rust/).
+[directory](examples/video_lidar_merge/).
 
 In this example, the `lidar_loader` process generates point cloud
 messages and publish them via a sender. The sender is created from the
 dataflow. The `video_loader` acts in similar way.
 
 ```rust
-let dataflow = Dataflow::open("dataflow.json5")?;
+let dataflow = easyflow::Dataflow::open("dataflow.json5")?;
 let mut sender = dataflow.build_sender("lidar_loader").await?;
 sender.send(bytes).await?;
 ```
@@ -72,7 +75,10 @@ loaders.
 ```rust
 let mut video_receiver = dataflow.build_receiver_from("merger", "VIDEO").await?;
 let mut lidar_receiver = dataflow.build_receiver_from("merger", "LIDAR").await?;
-let (video_packet, lidar_packet) = try_join!(video_receiver.recv(), lidar_receiver.recv())?;
+let (video_packet, lidar_packet) = futures::try_join!(
+    video_receiver.recv(),
+    lidar_receiver.recv()
+)?;
 ```
 
 ## Using _easyflow_ in Your Project

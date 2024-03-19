@@ -4,7 +4,7 @@ members = [
     "easyflow-link",
     "easyflow-rust",
     "easyflow-config",
-    "examples/video_lidar_merge-rust",
+    "examples/video_lidar_merge",
 ]
 
 [workspace.dependencies]

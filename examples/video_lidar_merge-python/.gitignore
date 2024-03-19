@@ -1,6 +1,0 @@
-/output/
-
-# python
-*.pyc
-*.pyo
-__pycache__/
