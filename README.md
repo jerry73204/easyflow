@@ -20,8 +20,11 @@ graph TD;
 
 ## Python Example
 
-The Python example is in the
-[directory](examples/video_lidar_merge-python/).
+The Python
+[example](https://github.com/jerry73204/easyflow-python/tree/main/example)
+is in the
+[easyflow-python](https://github.com/jerry73204/easyflow-python/)
+repositroy.
 
 In this example, the `lidar_loader` process generates point cloud
 messages and publish them via a sender. The sender is created from the
@@ -39,10 +42,10 @@ loaders.
 
 ```python
 def video_callback(payload):
-    // omit
+    pass  # omit
 
 def lidar_callback(payload):
-    // omit
+    pass  # omit
 
 video_listener = flow.listen_from("merger", "VIDEO", video_callback)
 lidar_listener = flow.listen_from("merger", "LIDAR", lidar_callback)
@@ -70,4 +73,22 @@ loaders.
 let mut video_receiver = dataflow.build_receiver_from("merger", "VIDEO").await?;
 let mut lidar_receiver = dataflow.build_receiver_from("merger", "LIDAR").await?;
 let (video_packet, lidar_packet) = try_join!(video_receiver.recv(), lidar_receiver.recv())?;
+```
+
+## Using _easyflow_ in Your Project
+
+### Python
+
+Using pip,
+
+```bash
+pip install -U git+https://github.com/jerry73204/easyflow-python.git
+```
+
+### Rust
+
+Add this line to your `Cargo.toml`.
+
+```toml
+easyflow = { version = "0.1.0", git = "https://github.com/jerry73204/easyflow.git" }
 ```
