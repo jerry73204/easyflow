@@ -83,3 +83,4 @@ mod dataflow;
 mod error;
 
 pub use dataflow::*;
+pub use error::Error;
