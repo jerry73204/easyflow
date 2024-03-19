@@ -5,7 +5,7 @@ members = [
     "easyflow-rust",
     "easyflow-python",
     "easyflow-config",
-    "examples/video_lidar_merge",
+    "examples/video_lidar_merge-rust",
 ]
 
 [workspace.dependencies]
