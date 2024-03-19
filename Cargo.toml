@@ -3,7 +3,6 @@ resolver = "2"
 members = [
     "easyflow-link",
     "easyflow-rust",
-    "easyflow-python",
     "easyflow-config",
     "examples/video_lidar_merge-rust",
 ]
